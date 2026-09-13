@@ -1,0 +1,16 @@
+name: app
+on: [push, pull_request]
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: install dependencies
+        run: python3 -m pip install -r requirements.txt
+      - name: Run tests
+        run: python3 -m pytest
